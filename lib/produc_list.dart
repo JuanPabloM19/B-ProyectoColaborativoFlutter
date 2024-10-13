@@ -8,9 +8,9 @@ import 'models.dart';
 class ProductList extends StatelessWidget {
   ProductList({Key? key}) : super(key: key);
   var products = [
-    Product(1, "Laptop 1", "Un Lapto muy eficicente", 2000),
-    Product(2, "Laptop 2", "Con descuento", 1500),
-    Product(3, "Laptop 3", "Equipo  premiun ", 3000)
+    Product(id:1, name:"Laptop 1", description: "Un Lapto muy eficicente", price: 2000),
+    Product(id: 2, name: "Laptop 2", description:  "Con descuento", price: 1500),
+    Product(id: 3, name: "Laptop 3", description: "Equipo  premiun ", price: 3000)
   ];
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,13 @@ class ProductList extends StatelessWidget {
 }
 
 Future<void> addToCart(Product product) async {
-  final item = CartItem(
-      id: product.id, name: product.name, price: product.price, quantity: 1);
-  await ShopDatabase.instance.insert(item);
+  try {
+    final item = CartItem(
+        id: product.id, name: product.name, price: product.price, quantity: 1);
+    await ShopDatabase.instance.insertCartItem(item);
+  } catch (e) {
+    print('Error al agregar el producto al carrito: $e');
+  }
 }
 
 class ProducItem extends StatelessWidget {

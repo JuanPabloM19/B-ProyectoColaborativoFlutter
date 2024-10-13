@@ -4,7 +4,15 @@ class Product {
   final String description;
   final int price;
 
-  Product(this.id, this.name, this.description, this.price);
+  Product({required this.id, required this.name, required this.description, required this.price});
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'price': price
+    };
+  }
 }
 
 class CartItem {

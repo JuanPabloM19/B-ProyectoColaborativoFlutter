@@ -83,7 +83,7 @@ class _CartItem extends StatelessWidget {
                         // ignore: duplicate_ignore, duplicate_ignore, duplicate_ignore
                         onPressed: () async {
                           cartItem.quantity++;
-                          await ShopDatabase.instance.update(cartItem);
+                          await ShopDatabase.instance.updateCartItem(cartItem);
                           // ignore: use_build_context_synchronously
                           Provider.of<CartNotifier>(context, listen: false)
                               .shoulRefresf();
@@ -99,9 +99,9 @@ class _CartItem extends StatelessWidget {
                         onPressed: () async {
                           cartItem.quantity--;
                           if (cartItem.quantity == 0) {
-                            await ShopDatabase.instance.delete(cartItem.id);
+                            await ShopDatabase.instance.deleteCartItem(cartItem.id);
                           } else {
-                            await ShopDatabase.instance.update(cartItem);
+                            await ShopDatabase.instance.updateCartItem(cartItem);
                           }
                           Provider.of<CartNotifier>(context, listen: false)
                               .shoulRefresf();
@@ -118,7 +118,7 @@ class _CartItem extends StatelessWidget {
                   Text("Total: \$${cartItem.totalPrice}"),
                   ElevatedButton(
                     onPressed: () async {
-                      await ShopDatabase.instance.delete(cartItem.id);
+                      await ShopDatabase.instance.deleteCartItem(cartItem.id);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("Producto eliminado!"),
