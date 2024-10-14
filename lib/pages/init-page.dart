@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/gestion.dart';
-import 'package:flutter_application_1/pages/my_cart.dart';
-import 'package:flutter_application_1/pages/produc_list.dart';
+import 'package:flutter_application_1/pages/options-page.dart';
+import 'package:flutter_application_1/pages/cart-page.dart';
+import 'package:flutter_application_1/pages/producs-page.dart';
 
 class InitPage extends StatefulWidget {
   const InitPage({super.key, required this.title});
@@ -19,13 +19,14 @@ class _InitPageState extends State<InitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Center(child: Text('Shop')),
+        automaticallyImplyLeading: false,
       ),
       body: selectIndex == 0
           ? ProductList()
           : selectIndex == 1
               ? const MyCart()
-              : const GestionScreen(),
+              : OptionsPage(),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(

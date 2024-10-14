@@ -3,18 +3,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'shop_database.dart'; // Asegúrate de tener la ruta correcta
+import '../services/database.dart'; // Asegúrate de tener la ruta correcta
 import '../models/models.dart';
 
-class GestionScreen extends StatefulWidget {
-  const GestionScreen({super.key});
+class AddPage extends StatefulWidget {
+  const AddPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _GestionScreenState createState() => _GestionScreenState();
+  _AddPageState createState() => _AddPageState();
 }
 
-class _GestionScreenState extends State<GestionScreen> {
+class _AddPageState extends State<AddPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
@@ -71,6 +71,15 @@ class _GestionScreenState extends State<GestionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Agregar Artículo'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Vuelve a la pantalla anterior
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(10.0),
         child: Column(

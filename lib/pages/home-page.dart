@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/init.dart';
+import 'package:flutter_application_1/pages/init-page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
