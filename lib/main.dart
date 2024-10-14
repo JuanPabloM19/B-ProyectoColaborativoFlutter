@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sqlite',
+      title: 'anda o no anda',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amberAccent,
       ),
       home: const HomePage(), // Asegúrate de que HomePage está bien importado
     );
