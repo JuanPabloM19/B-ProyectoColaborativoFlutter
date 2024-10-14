@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/gestion.dart';
 import 'package:flutter_application_1/pages/my_cart.dart';
 import 'package:flutter_application_1/pages/produc_list.dart';
 
@@ -20,7 +21,11 @@ class _InitPageState extends State<InitPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: selectIndex == 0 ? ProductList() : const MyCart(),
+      body: selectIndex == 0
+          ? ProductList()
+          : selectIndex == 1
+              ? const MyCart()
+              : const GestionScreen(),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -30,6 +35,10 @@ class _InitPageState extends State<InitPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Carrito de compras',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.edit),
+            label: 'Gestión',
           ),
         ],
         currentIndex: selectIndex,
