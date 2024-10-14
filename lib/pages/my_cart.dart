@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously, duplicate_ignore
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/notifier.dart';
 import 'package:flutter_application_1/pages/shop_database.dart';
@@ -65,10 +67,9 @@ class _CartItem extends StatelessWidget {
         style: const TextStyle(fontSize: 20, color: Colors.white),
         child: Row(
           children: [
-            Image.asset(
-              'assets/images/laptop.png',
-              width: 100,
-            ),
+            cartItem.imagePath.isNotEmpty
+                ? Image.file(File(cartItem.imagePath), width: 100)
+                : Image.asset('assets/images/laptop.png', width: 100),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -99,9 +100,11 @@ class _CartItem extends StatelessWidget {
                         onPressed: () async {
                           cartItem.quantity--;
                           if (cartItem.quantity == 0) {
-                            await ShopDatabase.instance.deleteCartItem(cartItem.id);
+                            await ShopDatabase.instance
+                                .deleteCartItem(cartItem.id);
                           } else {
-                            await ShopDatabase.instance.updateCartItem(cartItem);
+                            await ShopDatabase.instance
+                                .updateCartItem(cartItem);
                           }
                           Provider.of<CartNotifier>(context, listen: false)
                               .shoulRefresf();

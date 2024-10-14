@@ -3,6 +3,7 @@ import 'package:path/path.dart';
 import 'package:flutter_application_1/models/models.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart' show join;
+
 class ShopDatabase {
   static final ShopDatabase instance = ShopDatabase._init();
   static Database? _database;
@@ -31,7 +32,8 @@ class ShopDatabase {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         description TEXT NOT NULL,
-        price INTEGER NOT NULL
+        price INTEGER NOT NULL,
+        image_path TEXT NOT NULL
       )
     ''');
 
@@ -40,9 +42,42 @@ class ShopDatabase {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         price INTEGER NOT NULL,
-        quantity INTEGER NOT NULL
+        quantity INTEGER NOT NULL,
+        image_path TEXT NOT NULL
       )
     ''');
+  }
+
+  // Insertar un producto
+  Future<void> insertProduct(Product product) async {
+    final db = await instance.database;
+    await db.insert(
+      tableProducts,
+      product.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  // Obtiene todos los productos
+  Future<List<Product>> getAllProducts() async {
+    try {
+      final db = await instance.database;
+      final List<Map<String, dynamic>> maps = await db.query(tableProducts);
+
+      return List.generate(maps.length, (i) {
+        return Product(
+          id: maps[i]['id'],
+          name: maps[i]['name'] ?? 'Nombre no disponible',
+          description: maps[i]['description'] ?? 'Descripción no disponible',
+          price: maps[i]['price'] ?? 0,
+          imagePath: maps[i]['image_path'] ?? '',
+        );
+      });
+    } catch (e) {
+      // ignore: avoid_print
+      print("Error retrieving products: $e");
+      return [];
+    }
   }
 
   // Insert CartItem into cart_items table
@@ -67,6 +102,7 @@ class ShopDatabase {
           name: maps[i]['name'],
           price: maps[i]['price'],
           quantity: maps[i]['quantity'],
+          imagePath: maps[i]['image_path'],
         );
       });
     } catch (e) {
@@ -102,5 +138,3 @@ class ShopDatabase {
     db.close();
   }
 }
-
-  
