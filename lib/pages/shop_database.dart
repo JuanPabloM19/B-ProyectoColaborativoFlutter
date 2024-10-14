@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart' show join;
 
-import 'models.dart';
+import '../models/models.dart';
 
 class ShopDatabase {
   static final ShopDatabase instance = ShopDatabase._init();
