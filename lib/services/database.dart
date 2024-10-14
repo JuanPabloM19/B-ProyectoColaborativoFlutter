@@ -137,4 +137,24 @@ class ShopDatabase {
     final db = await instance.database;
     db.close();
   }
+
+  // Actualizar producto en la tabla de productos
+  Future<int> updateProduct(Product product) async {
+    final db = await instance.database;
+    return await db.update(
+      tableProducts,
+      product.toMap(),
+      where: 'id = ?',
+      whereArgs: [product.id],
+    );
+  }
+
+  Future<int> deleteProduct(int id) async {
+    final db = await instance.database;
+    return await db.delete(
+      tableProducts,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }

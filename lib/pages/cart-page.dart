@@ -3,8 +3,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/notifier.dart';
-import 'package:flutter_application_1/pages/shop_database.dart';
+import 'package:flutter_application_1/services/notifier.dart';
+import 'package:flutter_application_1/services/database.dart';
 import 'package:provider/provider.dart';
 
 import '../models/models.dart';
