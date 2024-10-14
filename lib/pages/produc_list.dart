@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/shop_database.dart';
+import 'package:flutter_application_1/pages/shop_database.dart';
 
-import 'models.dart';
+import '../models/models.dart';
 //import 'package:sql3/models.dart';
 
 // ignore: must_be_immutable
 class ProductList extends StatelessWidget {
-  ProductList({Key? key}) : super(key: key);
+  ProductList({super.key});
   var products = [
     Product(id:1, name:"Laptop 1", description: "Un Lapto muy eficicente", price: 2000),
     Product(id: 2, name: "Laptop 2", description:  "Con descuento", price: 1500),

@@ -1,7 +1,8 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'models.dart';
-
+import 'package:flutter_application_1/models/models.dart';
+// ignore: depend_on_referenced_packages
+import 'package:path/path.dart' show join;
 class ShopDatabase {
   static final ShopDatabase instance = ShopDatabase._init();
   static Database? _database;
@@ -69,6 +70,7 @@ class ShopDatabase {
         );
       });
     } catch (e) {
+      // ignore: avoid_print
       print("Error retrieving items: $e");
       return [];
     }

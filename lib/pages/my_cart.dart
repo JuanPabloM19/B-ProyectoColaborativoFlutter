@@ -1,14 +1,14 @@
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously, duplicate_ignore
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/notifier.dart';
-import 'package:flutter_application_1/shop_database.dart';
+import 'package:flutter_application_1/pages/notifier.dart';
+import 'package:flutter_application_1/pages/shop_database.dart';
 import 'package:provider/provider.dart';
 
-import 'models.dart';
+import '../models/models.dart';
 
 class MyCart extends StatelessWidget {
-  const MyCart({Key? key}) : super(key: key);
+  const MyCart({super.key});
 
   @override
   Widget build(BuildContext context) {
