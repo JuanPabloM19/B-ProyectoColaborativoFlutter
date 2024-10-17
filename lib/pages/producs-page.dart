@@ -52,7 +52,7 @@ Future<void> addToCart(Product product) async {
         price: product.price,
         imagePath: product.imagePath,
         quantity: 1);
-    await ShopDatabase.instance.insertCartItem(item);
+    await ShopDatabase.instance.insertOrUpdateCartItem(item);
   } catch (e) {
     // ignore: avoid_print
     print('Error al agregar el producto al carrito: $e');
