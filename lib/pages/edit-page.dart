@@ -4,6 +4,8 @@ import 'package:flutter_application_1/pages/reEdit-page.dart';
 import 'package:flutter_application_1/services/database.dart';
 
 class ProductListPage extends StatefulWidget {
+  const ProductListPage({super.key});
+
   @override
   _ProductListPageState createState() => _ProductListPageState();
 }
@@ -32,12 +34,12 @@ class _ProductListPageState extends State<ProductListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista de Productos'),
+        title: const Text('Lista de Productos'),
       ),
       body: products.isEmpty // Verifica si la lista de productos está vacía.
-          ? Center(
+          ? const Center(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -70,7 +72,7 @@ class _ProductListPageState extends State<ProductListPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.edit),
+                        icon: const Icon(Icons.edit),
                         onPressed: () {
                           // Navegar a la página de edición con el producto seleccionado
                           Navigator.push(
@@ -87,7 +89,7 @@ class _ProductListPageState extends State<ProductListPage> {
                         },
                       ),
                       IconButton(
-                        icon: Icon(Icons.delete),
+                        icon: const Icon(Icons.delete),
                         onPressed: () {
                           _deleteProduct(product.id!);
                         },

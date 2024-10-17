@@ -8,11 +8,11 @@ import 'package:flutter_application_1/pages/options-page.dart';
 
 class Routes {
   static final routes = <String, WidgetBuilder>{
-    '/': (context) => HomePage(),
-    '/add-page': (context) => AddPage(),
+    '/': (context) => const HomePage(),
+    '/add-page': (context) => const AddPage(),
     '/options-page': (context) => OptionsPage(),
-    '/cart-page': (context) => MyCart(),
-    '/init-page': (context) => InitPage(
+    '/cart-page': (context) => const MyCart(),
+    '/init-page': (context) => const InitPage(
           title: '',
         ),
     '/products-page': (context) => ProductListPage(),

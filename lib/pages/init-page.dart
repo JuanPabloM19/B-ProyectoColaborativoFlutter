@@ -19,14 +19,15 @@ class _InitPageState extends State<InitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Shop')),
+        title: const Center(child: Text('Shop')),
         automaticallyImplyLeading: false,
       ),
       body: selectIndex == 0
-          ? ProductList()
+          ? const ProductList()
           : selectIndex == 1
               ? const MyCart()
               : OptionsPage(),
+              
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -35,7 +36,7 @@ class _InitPageState extends State<InitPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: 'Carrito de compras',
+            label: 'Carrito',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.edit),
@@ -43,7 +44,6 @@ class _InitPageState extends State<InitPage> {
           ),
         ],
         currentIndex: selectIndex,
-        selectedItemColor: Colors.amber[800],
         onTap: (index) {
           setState(() {
             selectIndex = index;

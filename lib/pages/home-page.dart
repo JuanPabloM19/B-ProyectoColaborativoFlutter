@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
                           )), // Redirige a InitPage
                 );
               },
-              child: Text('Iniciar Sesión'),
+              child: const Text('Iniciar Sesión'),
             )
           ],
         ),
