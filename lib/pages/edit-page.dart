@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/models.dart';
 import 'package:flutter_application_1/pages/reEdit-page.dart';
@@ -65,36 +67,77 @@ class _ProductListPageState extends State<ProductListPage> {
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final product = products[index];
-                return ListTile(
-                  title: Text(product.name),
-                  subtitle: Text('Precio: \$${product.price}'),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.edit),
-                        onPressed: () {
-                          // Navegar a la página de edición con el producto seleccionado
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EditPage(
-                                  product:
-                                      product), // Pasando el producto a editar
+                return Card(
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 10, horizontal: 15), // Separación entre tarjetas
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 5, // Sombra de la tarjeta
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Imagen del producto
+                        product.imagePath.isNotEmpty
+                            ? Image.file(
+                                File(product.imagePath),
+                                width: 60,
+                                height: 60,
+                                fit: BoxFit.cover,
+                              )
+                            : const Icon(Icons.image, size: 60), // Icono si no hay imagen
+                        const SizedBox(width: 15),
+                        // Nombre del producto y precio
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.name,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                'Precio: \$${product.price}',
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Iconos de editar y eliminar alineados en fila
+                        Row(
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.edit),
+                              onPressed: () {
+                                // Navegar a la página de edición con el producto seleccionado
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        EditPage(product: product),
+                                  ),
+                                ).then((_) {
+                                  // Volver a cargar la lista de productos al regresar
+                                  _fetchProducts();
+                                });
+                              },
                             ),
-                          ).then((_) {
-                            // Volver a cargar la lista de productos al regresar
-                            _fetchProducts();
-                          });
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.delete),
-                        onPressed: () {
-                          _deleteProduct(product.id!);
-                        },
-                      ),
-                    ],
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () {
+                                _deleteProduct(product.id!);
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

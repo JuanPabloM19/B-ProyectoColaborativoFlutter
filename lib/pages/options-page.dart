@@ -14,6 +14,9 @@ class OptionsPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/add-page');
               },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+              ),
               child: const Text('Agregar Artículo'),
             ),
             const SizedBox(height: 20),
@@ -22,6 +25,9 @@ class OptionsPage extends StatelessWidget {
                 // Navegar a la lista de productos donde puedes editar
                 Navigator.pushNamed(context, '/products-page');
               },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+              ),
               child: const Text('Editar/Eliminar Artículo'),
             ),
           ],
