@@ -72,18 +72,32 @@ class _EditPageState extends State<EditPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            GestureDetector(
-              onTap: _selectImage,
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: _image != null
-                    ? FileImage(_image!)
-                    : NetworkImage(widget.product
-                        .imagePath), // Mostrar la imagen seleccionada o la original
-                child: _image == null
-                    ? const Icon(Icons.camera_alt, size: 50, color: Colors.grey)
-                    : null,
-              ),
+            Stack(
+              children: [
+                CircleAvatar(
+                  radius: 60,
+                  backgroundImage: _image != null
+                      ? FileImage(_image!) // Mostrar la nueva imagen seleccionada
+                      : (widget.product.imagePath.isNotEmpty
+                          ? FileImage(File(widget.product.imagePath))
+                          : null), // Mostrar la imagen del producto si existe
+                  child: _image == null && widget.product.imagePath.isEmpty
+                      ? const Icon(Icons.image, size: 60, color: Colors.grey)
+                      : null, // Mostrar icono si no hay imagen
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      padding: const EdgeInsets.all(12),
+                    ),
+                    onPressed: _selectImage,
+                    child: const Icon(Icons.camera_alt, size: 20),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             TextField(
