@@ -48,13 +48,12 @@ class ProductList extends StatelessWidget {
 Future<void> addToCart(Product product) async {
   try {
     final item = CartItem(
-      id: product.id ?? 0,
-      name: product.name,
-      price: product.price,
-      imagePath: product.imagePath,
-      quantity: 1,
-    );
-    await ShopDatabase.instance.insertCartItem(item);
+        id: product.id ?? 0,
+        name: product.name,
+        price: product.price,
+        imagePath: product.imagePath,
+        quantity: 1);
+    await ShopDatabase.instance.insertOrUpdateCartItem(item);
   } catch (e) {
     print('Error al agregar el producto al carrito: $e');
   }

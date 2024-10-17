@@ -91,6 +91,53 @@ class ShopDatabase {
     );
   }
 
+  // Insertar o actualizar CartItem en la tabla cart_items
+  Future<void> insertOrUpdateCartItem(CartItem item) async {
+    final db = await instance.database;
+
+    // Verificar si el producto ya existe en el carrito
+    final List<Map<String, dynamic>> maps = await db.query(
+      tableCartItems,
+      where: 'id = ?',
+      whereArgs: [item.id],
+    );
+
+    if (maps.isNotEmpty) {
+      // Si el producto ya existe, sumar la cantidad
+      final existingItem = CartItem(
+        id: maps.first['id'],
+        name: maps.first['name'],
+        price: maps.first['price'],
+        quantity: maps.first['quantity'],
+        imagePath: maps.first['image_path'],
+      );
+
+      // Actualizar la cantidad sumando la existente con la nueva
+      final updatedItem = CartItem(
+        id: existingItem.id,
+        name: existingItem.name,
+        price: existingItem.price,
+        quantity: existingItem.quantity + item.quantity,
+        imagePath: existingItem.imagePath,
+      );
+
+      // Actualizar el producto en la base de datos
+      await db.update(
+        tableCartItems,
+        updatedItem.toMap(),
+        where: 'id = ?',
+        whereArgs: [updatedItem.id],
+      );
+    } else {
+      // Si el producto no existe, insertarlo como nuevo
+      await db.insert(
+        tableCartItems,
+        item.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+  }
+
   // Retrieve all cart items
   Future<List<CartItem>> getAllItems() async {
     try {
