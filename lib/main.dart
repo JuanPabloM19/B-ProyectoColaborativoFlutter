@@ -18,9 +18,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Shop',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        useMaterial3: true,
+
+        // Define the default brightness and colors.
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color(0xFF6A9C89),          // ···
+          brightness: Brightness.light,
+        ),
       ),
       initialRoute: '/',
       routes: Routes.routes, // Asegúrate de que HomePage está bien importado

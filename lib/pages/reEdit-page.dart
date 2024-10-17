@@ -7,7 +7,7 @@ import 'dart:io';
 class EditPage extends StatefulWidget {
   final Product product;
 
-  EditPage({required this.product});
+  const EditPage({super.key, required this.product});
 
   @override
   _EditPageState createState() => _EditPageState();
@@ -66,7 +66,7 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Producto'),
+        title: const Text('Editar Producto'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -81,28 +81,28 @@ class _EditPageState extends State<EditPage> {
                     : NetworkImage(widget.product
                         .imagePath), // Mostrar la imagen seleccionada o la original
                 child: _image == null
-                    ? Icon(Icons.camera_alt, size: 50, color: Colors.grey)
+                    ? const Icon(Icons.camera_alt, size: 50, color: Colors.grey)
                     : null,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _nameController,
-              decoration: InputDecoration(labelText: 'Nombre'),
+              decoration: const InputDecoration(labelText: 'Nombre'),
             ),
             TextField(
               controller: _descriptionController,
-              decoration: InputDecoration(labelText: 'Descripción'),
+              decoration: const InputDecoration(labelText: 'Descripción'),
             ),
             TextField(
               controller: _priceController,
-              decoration: InputDecoration(labelText: 'Precio'),
+              decoration: const InputDecoration(labelText: 'Precio'),
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _updateProduct,
-              child: Text('Guardar Cambios'),
+              child: const Text('Guardar Cambios'),
             ),
           ],
         ),

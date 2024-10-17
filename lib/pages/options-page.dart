@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class OptionsPage extends StatelessWidget {
+  const OptionsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,15 +14,15 @@ class OptionsPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/add-page');
               },
-              child: Text('Agregar Artículo'),
+              child: const Text('Agregar Artículo'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Navegar a la lista de productos donde puedes editar
                 Navigator.pushNamed(context, '/products-page');
               },
-              child: Text('Editar/Eliminar Artículo'),
+              child: const Text('Editar/Eliminar Artículo'),
             ),
           ],
         ),

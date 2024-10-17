@@ -1,8 +1,9 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:flutter_application_1/models/models.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart' show join;
+
+import '../models/models.dart';
 
 class ShopDatabase {
   static final ShopDatabase instance = ShopDatabase._init();
