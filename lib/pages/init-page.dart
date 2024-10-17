@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/my_cart.dart';
-import 'package:flutter_application_1/pages/produc_list.dart';
+import 'package:flutter_application_1/pages/options-page.dart';
+import 'package:flutter_application_1/pages/cart-page.dart';
+import 'package:flutter_application_1/pages/producs-page.dart';
 
 class InitPage extends StatefulWidget {
   const InitPage({super.key, required this.title});
@@ -18,9 +19,15 @@ class _InitPageState extends State<InitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Center(child: Text('Shop')),
+        automaticallyImplyLeading: false,
       ),
-      body: selectIndex == 0 ? ProductList() : const MyCart(),
+      body: selectIndex == 0
+          ? const ProductList()
+          : selectIndex == 1
+              ? const MyCart()
+              : OptionsPage(),
+              
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -29,11 +36,14 @@ class _InitPageState extends State<InitPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: 'Carrito de compras',
+            label: 'Carrito',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.edit),
+            label: 'Gestión',
           ),
         ],
         currentIndex: selectIndex,
-        selectedItemColor: Colors.amber[800],
         onTap: (index) {
           setState(() {
             selectIndex = index;

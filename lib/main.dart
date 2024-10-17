@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/home.dart'; // Importa tu archivo home.dart
-import 'package:flutter_application_1/pages/notifier.dart'; // Importa el Notifier
+import 'package:flutter_application_1/routes/routes.dart';
+import 'package:flutter_application_1/services/notifier.dart'; // Importa el Notifier
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,11 +18,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'anda o no anda',
+      debugShowCheckedModeBanner: false,
+      title: 'Shop',
       theme: ThemeData(
-        primarySwatch: Colors.amberAccent,
+        useMaterial3: true,
+
+        // Define the default brightness and colors.
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color(0xFF6A9C89),          // ···
+          brightness: Brightness.light,
+        ),
       ),
-      home: const HomePage(), // Asegúrate de que HomePage está bien importado
+      initialRoute: '/',
+      routes: Routes.routes, // Asegúrate de que HomePage está bien importado
     );
   }
 }
